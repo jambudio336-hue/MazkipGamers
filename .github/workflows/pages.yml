@@ -25,10 +25,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
+      - name: Prepare public static website
+        run: |
+          mkdir -p _site
+          cp index.html style.css site.js favicon.svg dashboard.html features.html downloads.html about.html help.html privacy.html terms.html license.html 404.html .nojekyll _site/
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
