@@ -18,6 +18,7 @@ Website statis menggunakan HTML, CSS, dan JavaScript tanpa framework atau API be
 - Pusat unduhan — `downloads.html`
 - Tentang MazkipGamers — `about.html`
 - Pusat bantuan dan FAQ — `help.html`
+- Kontak dan formulir email — `contact.html`
 - Kebijakan privasi — `privacy.html`
 - Syarat penggunaan — `terms.html`
 - Lisensi dan atribusi — `license.html`
