@@ -35,18 +35,18 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build release APK
+      - name: Build installable Android APK
         working-directory: android
-        run: gradle --no-daemon assembleRelease
+        run: gradle --no-daemon assembleDebug
 
       - name: Rename APK
-        run: cp android/app/build/outputs/apk/release/app-release-unsigned.apk MazkipGamers-v1.0.0-unsigned.apk
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk MazkipGamers-v1.0.0.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: MazkipGamers-Android-APK
-          path: MazkipGamers-v1.0.0-unsigned.apk
+          path: MazkipGamers-v1.0.0.apk
           if-no-files-found: error
           retention-days: 30
 
@@ -55,6 +55,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="apk-v1.0.${{ github.run_number }}"
-          gh release create "$TAG" MazkipGamers-v1.0.0-unsigned.apk \
+          gh release create "$TAG" MazkipGamers-v1.0.0.apk \
             --title "MazkipGamers Android v1.0.${{ github.run_number }}" \
-            --notes "Build otomatis MazkipGamers Android WebView. APK ini unsigned untuk pengujian; perlu ditandatangani dengan keystore sebelum distribusi produksi."
+            --notes "APK Android MazkipGamers berbasis WebView, ditandatangani dengan debug certificate agar dapat dipasang untuk pengujian. Untuk distribusi produksi dan pembaruan jangka panjang, gunakan keystore rilis milik pengembang."
